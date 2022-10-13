@@ -1,27 +1,18 @@
-import React from 'react'
-import Card from '../Card/Card'
+import React from "react";
+import Card from "../Card/Card";
 
-const SingleMovie = ( { movies }, id ) => {
-    const findMovie = movies.find(movie => {
-        if (movie.id === id) {
-            return (
-                <Card
-                title={movie.title}
-                poster_path={movie.poster_path}
-                backdrop_path={movie.backdrop_path}
-                average_rating={movie.average_rating}
-                release_date={movie.release_date}
-                key={movie.id}
-                // onClick={() => goHome()}
-                />
-            )
-        }
-    })
-    return (
-        <div>
-            {findMovie}
-        </div>
-    )
-}
+const SingleMovie = ({ singleMovie }) => {
+  return (
+    <div>
+      <Card
+        title={singleMovie.title}
+        backdrop_path={singleMovie.backdrop_path}
+        average_rating={singleMovie.average_rating}
+        release_date={singleMovie.release_date}
+        key={singleMovie.id}
+      />
+    </div>
+  );
+};
 
-export default SingleMovie
+export default SingleMovie;
