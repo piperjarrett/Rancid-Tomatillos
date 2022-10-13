@@ -9,6 +9,7 @@ const Card = ({
   average_rating,
   release_date,
   displayMovieDetails,
+  goHome
 }) => {
   return (
     <div className="card" id={id}>
@@ -18,9 +19,10 @@ const Card = ({
         src={poster_path}
         onClick={() => displayMovieDetails(id)}
       />
-      <img src={backdrop_path} />
+      <img className='backdrop' src={backdrop_path} />
       <p>{average_rating}</p>
       <p>{release_date}</p>
+      <button onClick={() => goHome()}>Home</button>
     </div>
   );
 };
