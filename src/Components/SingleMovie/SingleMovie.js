@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "../Card/Card";
 
-const SingleMovie = ({ singleMovie }) => {
+const SingleMovie = ({ singleMovie, goHome }) => {
   return (
     <div>
       <Card
@@ -10,6 +10,7 @@ const SingleMovie = ({ singleMovie }) => {
         average_rating={singleMovie.average_rating}
         release_date={singleMovie.release_date}
         key={singleMovie.id}
+        goHome={goHome}
       />
     </div>
   );
