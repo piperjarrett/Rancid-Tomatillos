@@ -14,14 +14,9 @@ const Card = ({
   return (
     <div className="card" id={id}>
       <h3>{title}</h3>
-      <img
-        className="poster"
-        src={poster_path}
-        onClick={() => displayMovieDetails(id)}
-      />
       <img className='backdrop' src={backdrop_path} />
-      <p>{average_rating}</p>
-      <p>{release_date}</p>
+      <p>Rating: {average_rating}</p>
+      <p>Release Date: {release_date}</p>
       <button onClick={() => goHome()}>Home</button>
     </div>
   );
