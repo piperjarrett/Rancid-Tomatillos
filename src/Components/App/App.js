@@ -9,44 +9,41 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: { movieData },
-      randomMovie: "",
+      movies: [],
+      error: ''
     };
   }
 
   displayMovieDetails = (id) => {
-    console.log("it is clicking");
-    console.log(id);
-    console.log(this.state.movies.movieData.movies);
-    const singleMovie = this.state.movies.movieData.movies.find(
+    const singleMovie = this.state.movies.find(
       (movie) => movie.id === id
     );
-    console.log(singleMovie);
     this.setState({ singleMovie: singleMovie });
-    console.log(this.state);
   };
-  // setValue = (value) => {
-  //   this.setState({value:value}, this.getRandomMovie)
-  //   // this {value:value} or {message:newMessage}, on line 27, is saying make this previous value/message:this new value/message
-  // }
 
-  getRandomMovie = () => {
-    const newRandomMovie = movieData.movies[Math.floor(Math.random() * this.state.movies.movieData.movies.length)]
+  getHeaderMovie = () => {
+    const newRandomMovie = movieData.movies[Math.floor(Math.random() * movieData.movies.length)]
     this.setState( { randomMovie:newRandomMovie.backdrop_path } )
   }
 
   goHome = () => {
-    this.setState({movies: {movieData}, singleMovie: ''})
+    this.setState({singleMovie: ''})
   }
 
+
   componentDidMount = () => {
-    this.getRandomMovie()
+    this.getHeaderMovie()
+    return fetch('https://rancid-tomatillos.herokuapp.com/api/v2/movies')
+    .then(res => res.json())
+    .then(data => this.setState({ movies: data.movies }))
+    .catch(err => this.setState( { error: err.message } ))
   }
 
   render() {
     return (
       <div className="App">
-        <h1>Rancid Tomotillos</h1>
+        <Header getheadermovie={this.getheadermovie}/>
+        {this.state.error && <h2>Sorry! Something Went Wrong!</h2>}
         {this.state.singleMovie && (
           <SingleMovie singleMovie={this.state.singleMovie} goHome={this.goHome} />
         )}
