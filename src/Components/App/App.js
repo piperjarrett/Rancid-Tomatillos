@@ -17,8 +17,10 @@ class App extends Component {
   displayMovieDetails = (id) => {
     const singleMovie = this.state.movies.find(
       (movie) => movie.id === id
-    );
-    this.setState({ singleMovie: singleMovie });
+    )
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${singleMovie.id}`)
+    .then(res => res.json())
+    .then(data => this.setState({ singleMovie: data.movie }))
   };
 
   getHeaderMovie = () => {
@@ -52,7 +54,7 @@ class App extends Component {
           displayMovieDetails={this.displayMovieDetails}
           />
           </div>
-    )};
+    )}
     </div>
   )}
 }

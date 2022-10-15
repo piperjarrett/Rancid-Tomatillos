@@ -7,3 +7,8 @@
     width: 200px;
     height: 300px;
   }
+
+  .home-button {
+    color:rgb(192, 188, 155);
+    background-color: rgb(47, 37, 94);
+  }
