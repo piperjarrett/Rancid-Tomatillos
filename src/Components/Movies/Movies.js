@@ -1,8 +1,7 @@
 import React from "react";
 import "./Movies.css";
-import Card from "../Card/Card";
 
-const Movies = ({ movies, displayMovieDetails, id }) => {
+const Movies = ({ movies, displayMovieDetails }) => {
   const movieCards = movies.map((movie) => {
     return (
       <>
@@ -11,6 +10,7 @@ const Movies = ({ movies, displayMovieDetails, id }) => {
         src={movie.poster_path}
         onClick={() => displayMovieDetails(movie.id)}
         id={movie.id}
+        key={movie.id}
       />
       </>
     );
