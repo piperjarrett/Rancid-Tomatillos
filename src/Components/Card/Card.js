@@ -18,6 +18,7 @@ const Card = ({
       <h3>{title}</h3>
       <p>{tagline}</p>
       <img className='backdrop' src={backdrop_path} />
+      
       <p>{overview}</p>
       <p>🍅 Rating: {average_rating.toFixed(2)}</p>
       <p>Release Date: {release_date}</p>
