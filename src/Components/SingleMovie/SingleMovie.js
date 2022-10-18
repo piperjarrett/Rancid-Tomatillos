@@ -66,4 +66,5 @@ import ReactPlayer from 'react-player/youtube'
   }
   }
 
-export default SingleMovie
+
+export default SingleMovie;
