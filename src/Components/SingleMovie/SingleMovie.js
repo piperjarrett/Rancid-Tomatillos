@@ -1,46 +1,70 @@
-import React from "react";
+import React, { Component } from "react";
 import Card from "../Card/Card";
-import dayjs from "dayjs";
-import { Link } from "react-router-dom";
+import dayjs from 'dayjs'
+import { render } from "@testing-library/react";
+import ReactPlayer from 'react-player/youtube'
 
 // const SingleMovie = ({ singleMovie, goHome }) => {
+
 //   return (
 //     <div>
 //       <Card
 //         title={singleMovie.title}
 //         tagline={singleMovie.tagline}
 //         backdrop_path={singleMovie.backdrop_path}
+//         // video={video}
 //         overview={singleMovie.overview}
 //         average_rating={singleMovie.average_rating}
-//         release_date={dayjs(singleMovie.release_date).format("MM/DD/YYYY")}
+//         release_date={dayjs(singleMovie.release_date).format('MM/DD/YYYY')}
 //         genres={singleMovie.genres}
 //         runtime={singleMovie.runtime}
 //         key={singleMovie.id}
 //         goHome={goHome}
 //       />
 //     </div>
-//   );
-// };
+//   )
+// }
 
-const SingleMovie = ({ singleMovie, goHome }) => {
-  console.log(singleMovie);
-  return (
-    <div className="card" id={singleMovie.id}>
-      <h3>{singleMovie.title}</h3>
-      <p>{singleMovie.tagline}</p>
-      <img className="backdrop" src={singleMovie.backdrop_path} />
-      <p>{singleMovie.overview}</p>
-      <p>🍅 Rating: {singleMovie.average_rating.toFixed(2)}</p>
-      <p>Release Date: {singleMovie.release_date}</p>
-      <p>Genre: {`${singleMovie.genres}`}</p>
-      <p>Runtime: {singleMovie.runtime} Minutes</p>
-      <Link exact to="/" className="nav">
-        <button className="home-button" onClick={() => goHome()}>
-          Home
-        </button>
-      </Link>
-    </div>
-  );
-};
+
+  class SingleMovie extends Component {
+    constructor() {
+      super()
+      this.state = {
+      video: ''
+      }
+    }
+
+  componentDidMount() {
+  fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.singleMovie.id}/videos`)
+  .then(res => res.json())
+  .then(data => {
+    this.setState({ video: data.videos[0] })
+    console.log(data.videos[0])
+    console.log(this.state.video)
+    console.log(this.state)
+  })
+  }
+
+  render() {
+    return (
+      <div>
+        <Card
+          title={this.props.singleMovie.title}
+          tagline={this.props.singleMovie.tagline}
+          backdrop_path={this.props.singleMovie.backdrop_path}
+          video={this.state.video}
+          overview={this.props.singleMovie.overview}
+          average_rating={this.props.singleMovie.average_rating}
+          release_date={dayjs(this.props.singleMovie.release_date).format('MM/DD/YYYY')}
+          genres={this.props.singleMovie.genres}
+          runtime={this.props.singleMovie.runtime}
+          key={this.props.singleMovie.id}
+          goHome={this.props.goHome}
+        />
+      </div>
+    )
+  }
+  }
+
 
 export default SingleMovie;
