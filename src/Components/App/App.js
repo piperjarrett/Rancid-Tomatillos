@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
+import { Switch, Route } from "react-router-dom";
 import movieData from "../Movies/movieData";
 import Movies from "../Movies/Movies";
 import SingleMovie from "../SingleMovie/SingleMovie";
@@ -43,25 +44,41 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <main className="App">
         <Header getheadermovie={this.getheadermovie} />
-        {this.state.error && <h2>Sorry! Something Went Wrong!</h2>}
-        {this.state.singleMovie && (
-          <SingleMovie
-            singleMovie={this.state.singleMovie}
-            goHome={this.goHome}
+        {/* {this.state.error && <h2>Sorry! Something Went Wrong!</h2>} */}
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                (
+                  <img className="header-image" src={this.state.randomMovie} />
+                ) && (
+                  <Movies
+                    movies={this.state.movies}
+                    displayMovieDetails={this.displayMovieDetails}
+                  />
+                )
+              );
+            }}
           />
-        )}
-        {!this.state.singleMovie && (
-          <main>
-            <img className="header-image" src={this.state.randomMovie} />
-            <Movies
-              movies={this.state.movies}
-              displayMovieDetails={this.displayMovieDetails}
-            />
-          </main>
-        )}
-      </div>
+          <Route
+            exact
+            path="/movies/:id"
+            render={({ match }) => {
+              console.log(match);
+              const movieToRender = this.state.movies.find(
+                (movie) => movie.id === parseInt(match.params.id)
+              );
+              return (
+                <SingleMovie singleMovie={movieToRender} goHome={this.goHome} />
+              );
+            }}
+          />
+        </Switch>
+      </main>
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Card.css";
+import {Link} from 'react-router-dom'
 
 const Card = ({
   id,
@@ -23,7 +24,9 @@ const Card = ({
       <p>Release Date: {release_date}</p>
       <p>Genre: {`${genres}`}</p>
       <p>Runtime: {runtime} Minutes</p>
+      <Link exact to='/' className="nav">
       <button className='home-button' onClick={() => goHome()}>Home</button>
+      </Link>
     </div>
   )
 }
