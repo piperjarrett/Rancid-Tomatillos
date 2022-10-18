@@ -45,39 +45,39 @@ class App extends Component {
   render() {
     return (
       <main className="App">
-        <Header getheadermovie={this.getheadermovie} />
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return <Header getheadermovie={this.state.randomMovie} />;
+          }}
+        />
         {/* {this.state.error && <h2>Sorry! Something Went Wrong!</h2>} */}
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => {
-              return (
-                (
-                  <img className="header-image" src={this.state.randomMovie} />
-                ) && (
-                  <Movies
-                    movies={this.state.movies}
-                    displayMovieDetails={this.displayMovieDetails}
-                  />
-                )
-              );
-            }}
-          />
-          <Route
-            exact
-            path="/movies/:id"
-            render={({ match }) => {
-              console.log(match);
-              const movieToRender = this.state.movies.find(
-                (movie) => movie.id === parseInt(match.params.id)
-              );
-              return (
-                <SingleMovie singleMovie={movieToRender} goHome={this.goHome} />
-              );
-            }}
-          />
-        </Switch>
+
+        <Route
+          exact
+          path="/"
+          render={() => {
+            return (
+              <Movies
+                movies={this.state.movies}
+                displayMovieDetails={this.displayMovieDetails}
+              />
+            );
+          }}
+        />
+        <Route
+          exact
+          path="/movies/:id"
+          render={({ match }) => {
+            const movieToRender = this.state.movies.find(
+              (movie) => movie.id === parseInt(match.params.id)
+            );
+            return (
+              <SingleMovie singleMovie={movieToRender} goHome={this.goHome} />
+            );
+          }}
+        />
       </main>
     );
   }
