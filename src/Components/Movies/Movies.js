@@ -15,10 +15,10 @@ const Movies = ({ movies, displayMovieDetails }) => {
       </>
     );
   });
-  return <div 
+  return <section 
       className="movie-container">
         {movieCards}
-  </div>;
+  </section>;
 };
 
 export default Movies;

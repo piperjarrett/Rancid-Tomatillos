@@ -53,14 +53,13 @@ class App extends Component {
           />
         )}
         {!this.state.singleMovie && (
-          <div>
-            {" "}
-            <img className="header-image" src={this.state.randomMovie} />{" "}
+          <main>
+            <img className="header-image" src={this.state.randomMovie} />
             <Movies
               movies={this.state.movies}
               displayMovieDetails={this.displayMovieDetails}
             />
-          </div>
+          </main>
         )}
       </div>
     );
