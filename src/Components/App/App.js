@@ -54,7 +54,13 @@ class App extends Component {
 
     this.getHeaderMovie();
     return fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
-      .then((res) => res.json())
+      .then((res) => {
+        if(!res.ok) {
+          throw new Error('Error receiving Data')
+        } else {
+          return res.json()
+        }
+      })
       .then((data) => this.setState({ movies: data.movies }))
       .catch((err) => this.setState({ error: err.message }));
   };
