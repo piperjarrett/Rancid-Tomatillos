@@ -10,74 +10,69 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
+      movies: null,
       error: "",
+      singleMovie: null,
+      randomMovie: null,
     };
   }
 
   displayMovieDetails = (id) => {
-    const singleMovie = this.state.movies.find((movie) => movie.id === id);
-    fetch(
-      `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${singleMovie.id}`
-    )
-      .then((res) => res.json())
-      .then((data) => this.setState({ singleMovie: data.movie }));
+    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => this.setState({ singleMovie: resp.movie }));
   };
-
-  // displayMovieDetails = (id) => {
-  //   const singleMovie = this.state.movies.find(
-  //     (movie) => movie.id === id
-  //   )
-  //   const video = this.state.videos.find(trailer => {
-  //     this.state.movies.forEach(movie => trailer.movie_id === movie.id)
-  //   })
-  //   fetch([`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${singleMovie.id}`, `https://rancid-tomatillos.herokuapp.com/api/v2/movies/${singleMovie.id}/videos`])
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     console.log(data)
-  //     this.setState({ singleMovie: data[0].movie, video: data[1].videos[0] })
-  //   })
-  // };
 
   getHeaderMovie = () => {
     const newRandomMovie =
-      movieData.movies[Math.floor(Math.random() * movieData.movies.length)];
-    this.setState({ randomMovie: newRandomMovie.backdrop_path });
+      this.state.movies[Math.floor(Math.random() * this.state.movies.length)];
+    return newRandomMovie.backdrop_path;
   };
-
 
   goHome = () => {
     this.setState({ singleMovie: "" });
   };
 
   componentDidMount = () => {
-
-    this.getHeaderMovie();
-    return fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
+    fetch("https://rancid-tomatillos.herokuapp.com/api/v2/movies")
       .then((res) => {
-        if(!res.ok) {
-          throw new Error('Error receiving Data')
+        if (!res.ok) {
+          throw new Error("Error receiving Data");
         } else {
-          return res.json()
+          return res.json();
         }
       })
       .then((data) => this.setState({ movies: data.movies }))
       .catch((err) => this.setState({ error: err.message }));
   };
 
-
   render() {
-    return (
+    return !this.state.movies ? (
+      <div className="spinner-container">
+        <div className="loading-spinner"></div>
+      </div>
+    ) : (
       <main className="App">
         <Route
           exact
           path="/"
           render={() => {
-            return <Header getheadermovie={this.state.randomMovie} />;
+            return !this.state.movies ? (
+              <div className="spinner-container">
+                <div className="loading-spinner"></div>
+              </div>
+            ) : (
+              <div>
+                <h1>Rancid Tomatillos</h1>
+                <img
+                  className="header-image"
+                  src={`${this.getHeaderMovie()}`}
+                />
+              </div>
+            );
           }}
         />
         {/* {this.state.error && <h2>Sorry! Something Went Wrong!</h2>} */}
-
         <Route
           exact
           path="/"
@@ -93,12 +88,12 @@ class App extends Component {
         <Route
           exact
           path="/movies/:id"
-          render={({ match }) => {
-            const movieToRender = this.state.movies.find(
-              (movie) => movie.id === parseInt(match.params.id)
-            );
+          render={() => {
             return (
-              <SingleMovie singleMovie={movieToRender} goHome={this.goHome} />
+              <SingleMovie
+                singleMovie={this.state.singleMovie}
+                goHome={this.goHome}
+              />
             );
           }}
         />

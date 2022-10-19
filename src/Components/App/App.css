@@ -37,6 +37,11 @@
   };
 }; */
 
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   color: rgb(247, 202, 117);
   background-color: rgb(10, 2, 51);
@@ -45,7 +50,7 @@ body {
 
 .header-image {
   width: 100vw;
-  height: 650px;
+  height: 550px;
 }
 
 .backdrop {
