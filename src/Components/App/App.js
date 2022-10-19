@@ -57,11 +57,7 @@ class App extends Component {
           exact
           path="/"
           render={() => {
-            return !this.state.movies ? (
-              <div className="spinner-container">
-                <div className="loading-spinner"></div>
-              </div>
-            ) : (
+            return (
               <div>
                 <h1>Rancid Tomatillos</h1>
                 <img

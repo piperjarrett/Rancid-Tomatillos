@@ -6,6 +6,7 @@ import "./SingleMovie.css";
 import { Link } from "react-router-dom";
 
 const SingleMovie = ({ singleMovie, goHome }) => {
+  // const movieGenres = singleMovie.genres.split(',').join(', ')
   return !singleMovie ? (
     <div className="spinner-container">
       <div className="loading-spinner"></div>
@@ -19,7 +20,9 @@ const SingleMovie = ({ singleMovie, goHome }) => {
 
         <p>{singleMovie.overview}</p>
         <p>🍅 Rating: {singleMovie.average_rating.toFixed(2)}</p>
-        <p>Release Date: {singleMovie.release_date}</p>
+        <p>
+          Release Date: {dayjs(singleMovie.release_date).format("MM/DD/YYYY")}
+        </p>
         <p>Genre: {`${singleMovie.genres}`}</p>
         <p>Runtime: {singleMovie.runtime} Minutes</p>
         <Link exact to="/" className="nav">
