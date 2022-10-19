@@ -26,12 +26,30 @@
   .home-button {
     color:rgb(192, 188, 155);
     background-color: rgb(47, 37, 94);
+    margin: 10px;
   }
 
   .movie-details {
+    color:rgb(225, 45, 45);
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .movie-title {
     margin: 20px;
+    background-color: aliceblue;
+    opacity: .8;
+  }
+
+  .movie-details-box {
+    display: flex;
+    width: 1329px;
+    height: 401px;
+    background: #b0aead;
+    opacity: .8;
+    margin: 19px;
+    flex-direction: column;
   }
