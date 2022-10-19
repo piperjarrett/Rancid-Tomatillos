@@ -1,10 +1,8 @@
 import "./App.css";
 import React, { Component } from "react";
-import { Switch, Route } from "react-router-dom";
-import movieData from "../Movies/movieData";
+import { Route } from "react-router-dom";
 import Movies from "../Movies/Movies";
 import SingleMovie from "../SingleMovie/SingleMovie";
-import Header from "../Header/Header";
 
 class App extends Component {
   constructor() {
@@ -12,16 +10,10 @@ class App extends Component {
     this.state = {
       movies: null,
       error: "",
-      singleMovie: null,
+      // singleMovie: null,
       randomMovie: null,
     };
   }
-
-  displayMovieDetails = (id) => {
-    fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${id}`)
-      .then((resp) => resp.json())
-      .then((resp) => this.setState({ singleMovie: resp.movie }));
-  };
 
   getHeaderMovie = () => {
     const newRandomMovie =
@@ -53,13 +45,14 @@ class App extends Component {
       </div>
     ) : (
       <main className="App">
+        {this.state.error && <h1 className="heading">Sorry! Something Went Wrong!</h1>}
         <Route
           exact
           path="/"
           render={() => {
             return (
               <div>
-                <h1>Rancid Tomatillos</h1>
+                <h1 className="heading">Rancid Tomatillos</h1>
                 <img
                   className="header-image"
                   src={`${this.getHeaderMovie()}`}
@@ -68,7 +61,6 @@ class App extends Component {
             );
           }}
         />
-        {/* {this.state.error && <h2>Sorry! Something Went Wrong!</h2>} */}
         <Route
           exact
           path="/"
@@ -84,10 +76,10 @@ class App extends Component {
         <Route
           exact
           path="/movies/:id"
-          render={() => {
+          render={({match}) => {
             return (
               <SingleMovie
-                singleMovie={this.state.singleMovie}
+                singleMovieID={match.params.id}
                 goHome={this.goHome}
               />
             );

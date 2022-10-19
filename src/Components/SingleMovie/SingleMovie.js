@@ -1,78 +1,89 @@
 import React, { Component } from "react";
-import Card from "../Card/Card";
 import dayjs from "dayjs";
 import { render } from "@testing-library/react";
 import "./SingleMovie.css";
 import { Link } from "react-router-dom";
+// import ReactPlayer from 'react-player'
 
-const SingleMovie = ({ singleMovie, goHome }) => {
-  // const movieGenres = singleMovie.genres.split(',').join(', ')
-  return !singleMovie ? (
+class SingleMovie extends Component {
+  constructor() {
+    super()
+    this.state = {
+    singleMovie: null,
+    video: '',
+    error: ''
+    }
+  }
+
+componentDidMount() {
+fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.singleMovieID}/videos`)
+.then(res => {
+  if (!res.ok) {
+    throw new Error("Error receiving Data");
+  } else {
+    return res.json();
+  }
+})
+.then(data => {
+  this.setState({ video: data.videos })
+})
+.catch((error) => this.setState({ error: error.message }));
+fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.singleMovieID}`)
+.then(res => {
+  if (!res.ok) {
+    throw new Error("Error receiving Data");
+  } else {
+    return res.json();
+  }
+})
+.then(res => this.setState({ singleMovie: res.movie }))
+.catch((error) => this.setState({ error: error.message }));
+// console.log(res)
+console.log(this.state)
+}
+
+render() {
+
+  const getMovieGenre = (singleMovie) => {
+    if (singleMovie.genres) {
+      return singleMovie.genres.slice(0, singleMovie.genres.length).join(', ')
+    } else {
+      return 'Unknown Genre'
+    }
+  }
+
+  return !this.state.singleMovie ? (
     <div className="spinner-container">
+      <h3>Sorry we couldn't find what you were looking for!</h3>
       <div className="loading-spinner"></div>
     </div>
   ) : (
-    <div>
-      <div className="card" id={singleMovie.id}>
-        <h3>{singleMovie.title}</h3>
-        <p>{singleMovie.tagline}</p>
-        <img className="backdrop" src={singleMovie.backdrop_path} />
-
-        <p>{singleMovie.overview}</p>
-        <p>🍅 Rating: {singleMovie.average_rating.toFixed(2)}</p>
-        <p>
-          Release Date: {dayjs(singleMovie.release_date).format("MM/DD/YYYY")}
-        </p>
-        <p>Genre: {`${singleMovie.genres}`}</p>
-        <p>Runtime: {singleMovie.runtime} Minutes</p>
+    <div> 
         <Link exact to="/" className="nav">
-          <button className="home-button" onClick={() => goHome()}>
-            Home
+          <button className="home-button" onClick={() => this.props.goHome()}>
+           ⬅️
           </button>
         </Link>
+      <div className="card" id={this.state.singleMovie.id}>
+        <div className='movie-details' style={{ 
+          backgroundImage: `url(${this.state.singleMovie.backdrop_path})`, backgroundSize: 'cover', height: '100vh'
+        }}>
+          <h1 className='movie-title'>{this.state.singleMovie.title}</h1>
+          <div className='movie-details-box'>
+            <p>{this.state.singleMovie.tagline}</p>
+            <p>{this.state.singleMovie.overview}</p>
+            <p>🍅 Rating: {this.state.singleMovie.average_rating.toFixed(2)}</p>
+            <p>
+              Release Date: {dayjs(this.state.singleMovie.release_date).format("MM/DD/YYYY")}
+            </p>
+            <p>Genre: {`${getMovieGenre(this.state.singleMovie)}`}</p>
+            <p>Runtime: {this.state.singleMovie.runtime} Minutes</p>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
-
-// class SingleMovie extends Component {
-//   constructor() {
-//     super()
-//     this.state = {
-//     video: ''
-//     }
-//   }
-
-// componentDidMount() {
-// fetch(`https://rancid-tomatillos.herokuapp.com/api/v2/movies/${this.props.singleMovie.id}/videos`)
-// .then(res => res.json())
-// .then(data => {
-//   this.setState({ video: data.videos[0] })
-//   console.log(data.videos[0])
-//   console.log(this.state.video)
-//   console.log(this.state)
-// })
-// }
-
-// render() {
-//   return (
-//     <div>
-//       <Card
-//         title={this.props.singleMovie.title}
-//         tagline={this.props.singleMovie.tagline}
-//         backdrop_path={this.props.singleMovie.backdrop_path}
-//         video={this.state.video}
-//         overview={this.props.singleMovie.overview}
-//         average_rating={this.props.singleMovie.average_rating}
-//         release_date={dayjs(this.props.singleMovie.release_date).format('MM/DD/YYYY')}
-//         genres={this.props.singleMovie.genres}
-//         runtime={this.props.singleMovie.runtime}
-//         key={this.props.singleMovie.id}
-//         goHome={this.props.goHome}
-//       />
-//     </div>
-//   )
-// }
-// }
+}
+}
 
 export default SingleMovie;
