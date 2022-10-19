@@ -22,3 +22,16 @@
     justify-content: center;
     margin-top: 30% ;
   }
+
+  .home-button {
+    color:rgb(192, 188, 155);
+    background-color: rgb(47, 37, 94);
+  }
+
+  .movie-details {
+    margin: 20px;
+  }
+
+  .movie-title {
+    margin: 20px;
+  }
