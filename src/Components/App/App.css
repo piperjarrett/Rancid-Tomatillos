@@ -9,10 +9,14 @@ body {
   background-color: rgb(10, 2, 51);
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.header {
+  display: flex;
+  flex-direction: column;
+}
 
 .header-image {
-  width: 100vw;
-  height: 550px;
+  height: 20%;
+  margin: 20px;
 }
 
 .backdrop {

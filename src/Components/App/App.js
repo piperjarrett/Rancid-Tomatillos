@@ -51,7 +51,7 @@ class App extends Component {
           path="/"
           render={() => {
             return (
-              <div>
+              <div className='header'>
                 <h1 className="heading">Rancid Tomatillos</h1>
                 <img
                   className="header-image"
