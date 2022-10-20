@@ -10,7 +10,6 @@ class App extends Component {
     this.state = {
       movies: null,
       error: "",
-      // singleMovie: null,
       randomMovie: null,
     };
   }
@@ -35,23 +34,27 @@ class App extends Component {
         }
       })
       .then((data) => this.setState({ movies: data.movies }))
-      .catch((err) => this.setState({ error: err.message }));
+      .catch((err) => this.setState({ error: "Something happened" }));
   };
 
   render() {
-    return !this.state.movies ? (
+    return this.state.error ? (
+      <h1 className="error-message">
+        {" "}
+        Sorry, something went wrong! Please try again.{" "}
+      </h1>
+    ) : !this.state.movies ? (
       <div className="spinner-container">
         <div className="loading-spinner"></div>
       </div>
     ) : (
       <main className="App">
-        {this.state.error && <h1 className="heading">Sorry! Something Went Wrong!</h1>}
         <Route
           exact
           path="/"
           render={() => {
             return (
-              <div className='header'>
+              <div className="header">
                 <h1 className="heading">Rancid Tomatillos</h1>
                 <img
                   className="header-image"
@@ -76,7 +79,7 @@ class App extends Component {
         <Route
           exact
           path="/movies/:id"
-          render={({match}) => {
+          render={({ match }) => {
             return (
               <SingleMovie
                 singleMovieID={match.params.id}
