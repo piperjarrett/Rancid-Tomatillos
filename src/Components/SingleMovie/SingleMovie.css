@@ -53,3 +53,20 @@
     margin: 19px;
     flex-direction: column;
   }
+  .back-arrow {
+    margin-right: 93vw;
+  }
+
+  .movie-trailer {
+    display: flex;
+    flex-direction: column;
+  }
+  .movie-trailer-info {
+    display: flex;
+
+    justify-content: center;
+  }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+  }
