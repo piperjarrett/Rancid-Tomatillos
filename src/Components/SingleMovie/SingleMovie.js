@@ -98,25 +98,25 @@ class SingleMovie extends Component {
             <div className="back-arrow"> 
             <Link exact to="/" className="nav">
               <button className="home-button" onClick={() => this.props.goHome()}>
-                ⬅️
+              ✖️
               </button>
             </Link>
             </div>
             <h1 className="movie-title">{this.state.singleMovie.title}</h1>
             <div className="movie-details-box">
-              <p>{this.state.singleMovie.tagline}</p>
-              <p>{this.state.singleMovie.overview}</p>
-              <p>
+              <p className='tagline'>{this.state.singleMovie.tagline}</p>
+              <p className='overview'>{this.state.singleMovie.overview}</p>
+              <p className='rating'>
                 🍅 Rating: {this.state.singleMovie.average_rating.toFixed(2)}
               </p>
-              <p>
-                Release Date:{" "}
-                {dayjs(this.state.singleMovie.release_date).format(
+              <p className='release-date'>
+                Release Date:
+                 {dayjs(this.state.singleMovie.release_date).format(
                   "MM/DD/YYYY"
                 )}
               </p>
-              <p>Genre: {`${getMovieGenre(this.state.singleMovie)}`}</p>
-              <p>Runtime: {this.state.singleMovie.runtime} Minutes</p>
+              <p className='genre'>Genre: {`${getMovieGenre(this.state.singleMovie)}`}</p>
+              <p className='runtime'>Runtime: {this.state.singleMovie.runtime} Minutes</p>
             </div>
           </div>
           <section className="movie-trailer">
