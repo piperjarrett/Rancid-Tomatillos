@@ -48,7 +48,6 @@ class SingleMovie extends Component {
       })
       .then((res) => this.setState({ singleMovie: res.movie }))
       .catch((error) => this.setState({ error: error.message }));
-    console.log(this.state.trailers);
   }
 
   trailerSlides = () => {
@@ -58,8 +57,6 @@ class SingleMovie extends Component {
           <ReactPlayer
             className="video"
             controls={true}
-            // height="200px"
-            // width="98%"
             url={`https://www.youtube.com/watch?v=${video.key}`}
           />
         </SwiperSlide>
@@ -79,9 +76,13 @@ class SingleMovie extends Component {
       }
     };
 
-    return !this.state.singleMovie ? (
+    return this.state.error ? (
+      <h1 className="single-error-message">
+        {" "}
+        Sorry, something went wrong! Please go back to the main page.{" "}
+      </h1>
+    ) : !this.state.singleMovie ? (
       <div className="spinner-container">
-        <h3>Sorry we couldn't find what you were looking for!</h3>
         <div className="loading-spinner"></div>
       </div>
     ) : (
@@ -95,28 +96,35 @@ class SingleMovie extends Component {
               height: "100vh",
             }}
           >
-            <div className="back-arrow"> 
-            <Link exact to="/" className="nav">
-              <button className="home-button" onClick={() => this.props.goHome()}>
-              ✖️
-              </button>
-            </Link>
+            <div className="back-arrow">
+              <Link exact to="/" className="nav">
+                <button
+                  className="home-button"
+                  onClick={() => this.props.goHome()}
+                >
+                  ✖️
+                </button>
+              </Link>
             </div>
             <h1 className="movie-title">{this.state.singleMovie.title}</h1>
             <div className="movie-details-box">
-              <p className='tagline'>{this.state.singleMovie.tagline}</p>
-              <p className='overview'>{this.state.singleMovie.overview}</p>
-              <p className='rating'>
+              <p className="tagline">{this.state.singleMovie.tagline}</p>
+              <p className="overview">{this.state.singleMovie.overview}</p>
+              <p className="rating">
                 🍅 Rating: {this.state.singleMovie.average_rating.toFixed(2)}
               </p>
-              <p className='release-date'>
+              <p className="release-date">
                 Release Date:
-                 {dayjs(this.state.singleMovie.release_date).format(
+                {dayjs(this.state.singleMovie.release_date).format(
                   "MM/DD/YYYY"
                 )}
               </p>
-              <p className='genre'>Genre: {`${getMovieGenre(this.state.singleMovie)}`}</p>
-              <p className='runtime'>Runtime: {this.state.singleMovie.runtime} Minutes</p>
+              <p className="genre">
+                Genre: {`${getMovieGenre(this.state.singleMovie)}`}
+              </p>
+              <p className="runtime">
+                Runtime: {this.state.singleMovie.runtime} Minutes
+              </p>
             </div>
           </div>
           <section className="movie-trailer">

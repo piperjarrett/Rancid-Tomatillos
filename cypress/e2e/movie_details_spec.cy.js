@@ -1,6 +1,6 @@
 describe("empty spec", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3000/movies/539885");
+    cy.visit("/movies/539885");
   });
   it("Should see the title of the movie", () => {
     cy.get("h1");
@@ -41,6 +41,21 @@ describe("empty spec", () => {
         'p'
       ).should('have.class', 'genre')
       .contains('Genre: Action, Crime, Drama, Thriller')
+  })
+  it('Should display movie trailers', () => {
+    cy.intercept(
+      {method: 'GET',
+      url: 'https://rancid-tomatillos.herokuapp.com/api/v2/movies/539885/videos'},
+      {
+        videos: [{
+          id: 290,
+          movie_id: 539885,
+          key: "ozUuAcGOhPs",
+          site: "YouTube",
+          type: "Trailer"
+          }]
+      }
+    )
   })
   it("Should have a runtime", () => {
     cy.get('div')
