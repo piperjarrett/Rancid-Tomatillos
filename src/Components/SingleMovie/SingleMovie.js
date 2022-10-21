@@ -93,7 +93,6 @@ class SingleMovie extends Component {
             style={{
               backgroundImage: `url(${this.state.singleMovie.backdrop_path})`,
               backgroundSize: "cover",
-              height: "100vh",
             }}
           >
             <div className="back-arrow">
