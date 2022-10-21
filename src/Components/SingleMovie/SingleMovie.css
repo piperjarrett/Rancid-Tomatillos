@@ -55,6 +55,8 @@
     opacity: .8;
     margin: 19px;
     flex-direction: column;
+    padding: 15px;
+    align-items: center;
   }
   .back-arrow {
     margin-right: 93%;
