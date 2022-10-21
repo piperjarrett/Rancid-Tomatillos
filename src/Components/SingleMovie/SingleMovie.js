@@ -50,25 +50,41 @@ class SingleMovie extends Component {
   }
 
   trailerSlides = () => {
-    let trailerSlides = this.state.trailers.map((video) => {
-      return (
-        <SwiperSlide className="swiper-slide" key={video.id}>
-          <ReactPlayer
-            className="video"
-            controls={true}
-            url={`https://www.youtube.com/watch?v=${video.key}`}
-          />
-        </SwiperSlide>
-      );
-    });
-    console.log(this.state.trailers)
-    console.log(trailerSlides)
-    return trailerSlides;
-  };
+      let trailerSlides;
+      this.state.trailers.forEach(trailer  => {
+        if(trailer.site === 'YouTube') {
+           trailerSlides = this.state.trailers.map(video => {
+            return (
+            <SwiperSlide className="swiper-slide" key={video.id}>
+              <ReactPlayer
+                className="video"
+                controls={true}
+                url={`https://www.youtube.com/watch?v=${video.key}`}
+              />
+              </SwiperSlide>
+              )
+          })
+        } else if (trailer.site === 'Vimeo') {
+           trailerSlides = this.state.trailers.map(video => {
+            return (
+              <SwiperSlide className="swiper-slide" key={video.id}>
+                <ReactPlayer
+                  className="video"
+                  controls={true}
+                  url={`https://www.vimeo.com/${video.key}`}
+                />
+              </SwiperSlide>
+            );
+          })
+        }
+      })
+      return trailerSlides
+    }
 
   render() {
     const getMovieGenre = (singleMovie) => {
-      if (singleMovie.genres) {
+      console.log(singleMovie.genres)
+      if (singleMovie.genres.length > 0) {
         return singleMovie.genres
           .slice(0, singleMovie.genres.length)
           .join(", ");
@@ -77,10 +93,18 @@ class SingleMovie extends Component {
       }
     };
 
+    const getMovieRuntime = (singleMovie) => {
+      if(singleMovie.runtime > 0) {
+        return `${singleMovie.runtime} Minutes`
+      }else {
+        return 'Unknown Runtime'
+      }
+    }
+
     return this.state.error ? (
       <h1 className="single-error-message">
-        {" "}
-        Sorry, something went wrong! Please go back to the main page.{" "}
+        
+        Sorry, something went wrong! Please go back to the main page.
       </h1>
     ) : !this.state.singleMovie ? (
       <div className="spinner-container">
@@ -122,7 +146,7 @@ class SingleMovie extends Component {
                 Genre: {`${getMovieGenre(this.state.singleMovie)}`}
               </p>
               <p className="runtime">
-                Runtime: {this.state.singleMovie.runtime} Minutes
+                Runtime: {`${getMovieRuntime(this.state.singleMovie)}`}
               </p>
             </div>
           </div>
