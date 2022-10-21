@@ -10,7 +10,6 @@ class App extends Component {
     this.state = {
       movies: null,
       error: "",
-      randomMovie: null,
     };
   }
 
@@ -18,10 +17,6 @@ class App extends Component {
     const newRandomMovie =
       this.state.movies[Math.floor(Math.random() * this.state.movies.length)];
     return newRandomMovie.backdrop_path;
-  };
-
-  goHome = () => {
-    this.setState({ singleMovie: "" });
   };
 
   componentDidMount = () => {
@@ -57,6 +52,7 @@ class App extends Component {
               <div className="header">
                 <h1 className="heading">Rancid Tomatillos</h1>
                 <img
+                  alt="cover image"
                   className="header-image"
                   src={`${this.getHeaderMovie()}`}
                 />
@@ -80,12 +76,7 @@ class App extends Component {
           exact
           path="/movies/:id"
           render={({ match }) => {
-            return (
-              <SingleMovie
-                singleMovieID={match.params.id}
-                goHome={this.goHome}
-              />
-            );
+            return <SingleMovie singleMovieID={match.params.id} />;
           }}
         />
       </main>

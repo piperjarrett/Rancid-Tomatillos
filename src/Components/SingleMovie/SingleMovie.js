@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import dayjs from "dayjs";
-import { render } from "@testing-library/react";
 import "./SingleMovie.css";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Mousewheel, Keyboard } from "swiper";
+import { Navigation, Mousewheel, Keyboard } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -90,7 +89,7 @@ class SingleMovie extends Component {
           .slice(0, singleMovie.genres.length)
           .join(", ");
       } else {
-        return "Unknown Genre";
+        return "Unkown Genre";
       }
     };
 
@@ -119,14 +118,12 @@ class SingleMovie extends Component {
             style={{
               backgroundImage: `url(${this.state.singleMovie.backdrop_path})`,
               backgroundSize: "cover",
-              height: "100vh",
             }}
           >
             <div className="back-arrow">
               <Link exact to="/" className="nav">
                 <button
                   className="home-button"
-                  onClick={() => this.props.goHome()}
                 >
                   ✖️
                 </button>

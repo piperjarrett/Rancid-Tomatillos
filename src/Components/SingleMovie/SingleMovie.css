@@ -31,6 +31,10 @@
     height: 40px;
   }
 
+  .home-button:hover {
+    transform: scale(1.1);
+  }
+
   .movie-details {
     color:rgb(225, 45, 45);
     margin: 20px;
@@ -41,19 +45,18 @@
   }
 
   .movie-title {
-    margin: 20px;
     background-color: aliceblue;
     opacity: .8;
   }
 
   .movie-details-box {
     display: flex;
-    width: 1329px;
-    height: 401px;
     background: #b0aead;
     opacity: .8;
     margin: 19px;
     flex-direction: column;
+    padding: 15px;
+    align-items: center;
   }
   .back-arrow {
     margin-right: 93%;
