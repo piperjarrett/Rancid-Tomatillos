@@ -11,7 +11,7 @@
 - [Contributors](#contributors)
 
 ## Introduction
-When visiting the link to our webpage you will be sent to our homepage with a image of a movie and then below, 40+ movies to click on. When you select a movie you will be directed to a new page that contains details and trailer/trailers of that specific movie.
+When visiting the link to our webpage you will be sent to our homepage with a image of a movie and then below, 40 movies to click on. When you select a movie you will be directed to a new page that contains details and trailer/trailers of that specific movie.
 
 ## Links
 - [Project spec part 1](https://frontend.turing.edu/projects/module-3/rancid-tomatillos-v3.html)
