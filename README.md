@@ -24,7 +24,10 @@ When visiting the link to our webpage you will be sent to our homepage with a im
 - Create a multi-page UX using Router
 
 ## Application in Use
-![Main_Page_FitLit](https://user-images.githubusercontent.com/18154724/191154439-2dca5860-f244-4e14-8a22-5af9e0f02b65.gif)
+![2022-10-24 11 18 31](https://user-images.githubusercontent.com/11345457/197586898-d08ec658-1cb2-4e92-9bca-cddf7b0b4e9f.gif)
+![2022-10-24 11 19 56](https://user-images.githubusercontent.com/11345457/197587165-e7a959e9-ebc6-4f6c-8f0e-b748006ac8a0.gif)
+![2022-10-24 11 20 48](https://user-images.githubusercontent.com/11345457/197587298-0945c093-8c40-47b1-8a09-fcccdab8356a.gif)
+
 
 ## Setup
 1. Fork this repo - on the top right corner of this page, click the **Fork** button. 
