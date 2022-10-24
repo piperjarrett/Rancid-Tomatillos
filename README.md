@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# 🍅 Rancid Tomatillos 🍅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+- [Introduction](#introduction)
+- [Links](#links)
+- [Learning Goals](#learning-goals)
+- [Application in Use](#application-in-use)
+- [Setup](#setup)
+- [Future Additions](#future-additions)
+- [Technologies](#technologies)
+- [Contributors](#contributors)
 
-## Available Scripts
+## Introduction
+When visiting the link to our webpage you will be sent to our homepage with a image of a movie and then below, 40+ movies to click on. When you select a movie you will be directed to a new page that contains details and trailer/trailers of that specific movie.
 
-In the project directory, you can run:
+## Links
+- [Project spec part 1](https://frontend.turing.edu/projects/module-3/rancid-tomatillos-v3.html)
+- [The Project](https://rancid-tomatillos-pied.vercel.app/)
 
-### `npm start`
+## Learning Goals 
+- Gain competency with React fundamentals
+- Learn how to test React components & asynchronous JS
+- Practice refactoring
+- Create a multi-page UX using Router
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Application in Use
+![Main_Page_FitLit](https://user-images.githubusercontent.com/18154724/191154439-2dca5860-f244-4e14-8a22-5af9e0f02b65.gif)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup
+1. Fork this repo - on the top right corner of this page, click the **Fork** button. 
+2. Clone down the forked repo. To rename your project you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
+3. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
+4. Run `npm start` in the terminal to see the HTML page running in your browser on `http://localhost:3000/`. `Control + C` is the command to stop running the local server.  Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. 
+7. Enjoy!
 
-### `npm test`
+## Future Additions
+- Search input that would filter what movies contained the title you are looking for. 
+- Ability to filter by the movies genre. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies
+This project used JavaScript, React primarilary. Cypress was used when testing our application. Additional technologies learned specifically for this project included Router, Swiper.js, and React Player. 
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Contributors
+This project was built by a group of two Front End Engineering students at Turing School of Software and Design: 
+- [Danielle Sweeny](https://github.com/dsweeny1)
+- [Piper Jarrett](https://github.com/piperjarrett)
