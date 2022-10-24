@@ -50,40 +50,39 @@ class SingleMovie extends Component {
   }
 
   trailerSlides = () => {
-      let trailerSlides;
-      this.state.trailers.forEach(trailer  => {
-        if(trailer.site === 'YouTube') {
-           trailerSlides = this.state.trailers.map(video => {
-            return (
+    let trailerSlides;
+    this.state.trailers.forEach((trailer) => {
+      if (trailer.site === "YouTube") {
+        trailerSlides = this.state.trailers.map((video) => {
+          return (
             <SwiperSlide className="swiper-slide" key={video.id}>
               <ReactPlayer
                 className="video"
                 controls={true}
                 url={`https://www.youtube.com/watch?v=${video.key}`}
               />
-              </SwiperSlide>
-              )
-          })
-        } else if (trailer.site === 'Vimeo') {
-           trailerSlides = this.state.trailers.map(video => {
-            return (
-              <SwiperSlide className="swiper-slide" key={video.id}>
-                <ReactPlayer
-                  className="video"
-                  controls={true}
-                  url={`https://www.vimeo.com/${video.key}`}
-                />
-              </SwiperSlide>
-            );
-          })
-        }
-      })
-      return trailerSlides
-    }
+            </SwiperSlide>
+          );
+        });
+      } else if (trailer.site === "Vimeo") {
+        trailerSlides = this.state.trailers.map((video) => {
+          return (
+            <SwiperSlide className="swiper-slide" key={video.id}>
+              <ReactPlayer
+                className="video"
+                controls={true}
+                url={`https://www.vimeo.com/${video.key}`}
+              />
+            </SwiperSlide>
+          );
+        });
+      }
+    });
+    return trailerSlides;
+  };
 
   render() {
     const getMovieGenre = (singleMovie) => {
-      console.log(singleMovie.genres)
       if (singleMovie.genres.length > 0) {
         return singleMovie.genres
           .slice(0, singleMovie.genres.length)
@@ -94,16 +93,15 @@ class SingleMovie extends Component {
     };
 
     const getMovieRuntime = (singleMovie) => {
-      if(singleMovie.runtime > 0) {
-        return `${singleMovie.runtime} Minutes`
-      }else {
-        return 'Unknown Runtime'
+      if (singleMovie.runtime > 0) {
+        return `${singleMovie.runtime} Minutes`;
+      } else {
+        return "Unknown Runtime";
       }
-    }
+    };
 
     return this.state.error ? (
       <h1 className="single-error-message">
-        
         Sorry, something went wrong! Please go back to the main page.
       </h1>
     ) : !this.state.singleMovie ? (
@@ -122,11 +120,7 @@ class SingleMovie extends Component {
           >
             <div className="back-arrow">
               <Link exact to="/" className="nav">
-                <button
-                  className="home-button"
-                >
-                  ✖️
-                </button>
+                <button className="home-button">✖️</button>
               </Link>
             </div>
             <h1 className="movie-title">{this.state.singleMovie.title}</h1>
