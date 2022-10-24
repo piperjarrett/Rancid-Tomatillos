@@ -35,8 +35,7 @@ class App extends Component {
   render() {
     return this.state.error ? (
       <h1 className="error-message">
-        {" "}
-        Sorry, something went wrong! Please try again.{" "}
+        Sorry, something went wrong! Please try again.
       </h1>
     ) : !this.state.movies ? (
       <div className="spinner-container">
@@ -67,7 +66,6 @@ class App extends Component {
             return (
               <Movies
                 movies={this.state.movies}
-                displayMovieDetails={this.displayMovieDetails}
               />
             );
           }}

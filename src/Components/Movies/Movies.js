@@ -1,7 +1,6 @@
 import React from "react";
 import "./Movies.css";
 import { Link } from "react-router-dom";
-import { Component } from "react";
 
 const Movies = ({ movies }) => {
   const movieCards = movies.map((movie) => {
